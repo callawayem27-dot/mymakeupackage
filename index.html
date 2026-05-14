@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GlowBox Beauty</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background:#fff7fb;
+      color:#333;
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    ::selection{
+      background:#ff9fc8;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      z-index:1000;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:20px 8%;
+
+      background:rgba(255,255,255,0.8);
+      backdrop-filter:blur(12px);
+
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:2rem;
+      font-weight:700;
+      color:#ff4f9a;
+      font-family:'Playfair Display', serif;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:30px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:#444;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#ff4f9a;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      text-align:center;
+
+      padding:120px 10%;
+
+      background:
+      linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.6)),
+      url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1800&auto=format&fit=crop");
+
+      background-size:cover;
+      background-position:center;
+    }
+
+    .hero-content{
+      max-width:850px;
+    }
+
+    .hero h1{
+      font-size:5rem;
+      line-height:1.1;
+      color:#ff2d86;
+      margin-bottom:25px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .hero p{
+      font-size:1.2rem;
+      line-height:1.8;
+      color:#444;
+      margin-bottom:35px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:16px 36px;
+
+      border-radius:40px;
+      text-decoration:none;
+
+      background:linear-gradient(135deg,#ff4f9a,#ff82b8);
+
+      color:white;
+      font-weight:600;
+
+      transition:0.3s;
+
+      box-shadow:0 12px 25px rgba(255,79,154,0.35);
+    }
+
+    .btn:hover{
+      transform:translateY(-5px);
+    }
+
+    /* GENERAL SECTION */
+
+    section{
+      padding:120px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:3rem;
+      margin-bottom:15px;
+      color:#ff2d86;
+      font-family:'Playfair Display', serif;
+    }
+
+    .section-title p{
+      max-width:700px;
+      margin:auto;
+      color:#777;
+      line-height:1.8;
+    }
+
+    /* PACKAGE CARDS */
+
+    .packages{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+    }
+
+    .card{
+      background:white;
+      border-radius:28px;
+      overflow:hidden;
+
+      box-shadow:0 15px 40px rgba(0,0,0,0.08);
+
+      transition:0.4s;
+    }
+
+    .card:hover{
+      transform:translateY(-12px);
+    }
+
+    .card img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:30px;
+    }
+
+    .card-content h3{
+      font-size:1.8rem;
+      color:#ff4f9a;
+      margin-bottom:10px;
+    }
+
+    .price{
+      font-size:1.4rem;
+      font-weight:700;
+      margin:15px 0;
+    }
+
+    .card-content p{
+      color:#666;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    /* FEATURES */
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .feature-box{
+      background:white;
+      border-radius:25px;
+      padding:40px 30px;
+      text-align:center;
+
+      box-shadow:0 10px 35px rgba(0,0,0,0.06);
+    }
+
+    .icon{
+      font-size:3rem;
+    }
+
+    .feature-box h3{
+      margin:20px 0 10px;
+      color:#ff4f9a;
+    }
+
+    .feature-box p{
+      color:#666;
+      line-height:1.8;
+    }
+
+    /* STORY */
+
+    .story{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+
+    .story img{
+      border-radius:30px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .story-text h2{
+      font-size:3rem;
+      margin-bottom:25px;
+      color:#ff2d86;
+      font-family:'Playfair Display', serif;
+    }
+
+    .story-text p{
+      color:#666;
+      line-height:2;
+      margin-bottom:20px;
+    }
+
+    /* GALLERY */
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+
+    .gallery img{
+      width:100%;
+      height:380px;
+      object-fit:cover;
+
+      border-radius:25px;
+
+      transition:0.4s;
+    }
+
+    .gallery img:hover{
+      transform:scale(1.03);
+    }
+
+    /* TESTIMONIALS */
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+    }
+
+    .testimonial{
+      background:white;
+      padding:40px;
+      border-radius:30px;
+
+      box-shadow:0 10px 35px rgba(0,0,0,0.07);
+    }
+
+    .testimonial p{
+      color:#666;
+      line-height:1.9;
+    }
+
+    .testimonial h4{
+      margin-top:20px;
+      color:#ff4f9a;
+    }
+
+    /* NEWSLETTER */
+
+    .newsletter{
+      background:linear-gradient(135deg,#ff4f9a,#ff9ec9);
+      padding:70px 10%;
+      border-radius:40px;
+
+      text-align:center;
+      color:white;
+    }
+
+    .newsletter h2{
+      font-size:3rem;
+      margin-bottom:20px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .newsletter p{
+      margin-bottom:35px;
+      font-size:1.1rem;
+    }
+
+    .newsletter input{
+      width:60%;
+      max-width:500px;
+
+      padding:18px;
+
+      border:none;
+      outline:none;
+
+      border-radius:50px;
+
+      font-size:1rem;
+    }
+
+    .newsletter button{
+      margin-top:20px;
+
+      padding:16px 35px;
+
+      border:none;
+      border-radius:40px;
+
+      background:white;
+      color:#ff4f9a;
+
+      font-weight:700;
+      cursor:pointer;
+
+      transition:0.3s;
+    }
+
+    .newsletter button:hover{
+      transform:scale(1.05);
+    }
+
+    /* FOOTER */
+
+    footer{
+      text-align:center;
+      padding:50px 20px;
+      color:#777;
+      font-size:0.95rem;
+    }
+
+    /* MOBILE */
+
+    @media (max-width:768px){
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      .newsletter input{
+        width:100%;
+      }
+
+      .section-title h2{
+        font-size:2.2rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">GlowBox</div>
+
+    <ul>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>Discover Your New Favorite Makeup</h1>
+
+      <p>
+        Luxury beauty subscription boxes filled with trending makeup,
+        skincare, and exclusive products delivered monthly.
+      </p>
+
+      <a href="#packages" class="btn">Explore Packages</a>
+
+    </div>
+
+  </section>
+
+  <!-- PACKAGES -->
+
+  <section id="packages">
+
+    <div class="section-title">
+
+      <h2>Beauty Packages</h2>
+
+      <p>
+        Curated makeup experiences designed for beauty lovers
+        who want to explore premium brands and exciting new products.
+      </p>
+
+    </div>
+
+    <div class="packages">
+
+      <!-- CARD 1 -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1200&auto=format&fit=crop"
+          alt="Pink Glow Box"
+        >
+
+        <div class="card-content">
+
+          <h3>Pink Glow Box</h3>
+
+          <div class="price">$29 / month</div>
+
+          <p>
+            Includes lip glosses, blush palettes, mini perfumes,
+            shimmer products, and surprise beauty tools every month.
+          </p>
+
+          <a href="#" class="btn">Purchase</a>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1200&auto=format&fit=crop"
+          alt="Luxury Glam Kit"
+        >
+
+        <div class="card-content">
+
+          <h3>Luxury Glam Kit</h3>
+
+          <div class="price">$49 / month</div>
+
+          <p>
+            Premium makeup package with luxury foundations,
+            eyeshadow palettes, skincare serums, and limited edition items.
+          </p>
+
+          <a href="#" class="btn">Purchase</a>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1526045478516-99145907023c?q=80&w=1200&auto=format&fit=crop"
+          alt="Ultimate Beauty Chest"
+        >
+
+        <div class="card-content">
+
+          <h3>Ultimate Beauty Chest</h3>
+
+          <div class="price">$89 / month</div>
+
+          <p>
+            Full-size trending products from viral brands with exclusive
+            early-access launches and collector packaging.
+          </p>
+
+          <a href="#" class="btn">Purchase</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section id="features">
+
+    <div class="section-title">
+
+      <h2>Why Everyone Loves GlowBox</h2>
+
+      <p>
+        We help beauty lovers discover products they actually enjoy using.
+      </p>
+
+    </div>
+
+    <div class="features">
+
+      <div class="feature-box">
+
+        <div class="icon">💄</div>
+
+        <h3>Trending Products</h3>
+
+        <p>
+          Get access to viral beauty products before they become mainstream.
+        </p>
+
+      </div>
+
+      <div class="feature-box">
+
+        <div class="icon">✨</div>
+
+        <h3>Luxury Packaging</h3>
+
+        <p>
+          Every box is beautifully designed for an aesthetic unboxing experience.
+        </p>
+
+      </div>
+
+      <div class="feature-box">
+
+        <div class="icon">🌸</div>
+
+        <h3>Skincare Included</h3>
+
+        <p>
+          Discover gentle skincare products personalized to your beauty goals.
+        </p>
+
+      </div>
+
+      <div class="feature-box">
+
+        <div class="icon">🎀</div>
+
+        <h3>Exclusive Deals</h3>
+
+        <p>
+          Members receive discounts and access to limited beauty collections.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- STORY -->
+
+  <section>
+
+    <div class="story">
+
+      <img
+        src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1400&auto=format&fit=crop"
+        alt="Beauty model"
+      >
+
+      <div class="story-text">
+
+        <h2>Beauty Should Feel Exciting</h2>
+
+        <p>
+          GlowBox was created for makeup lovers who enjoy experimenting with
+          new looks, textures, and beauty trends.
+        </p>
+
+        <p>
+          Every month brings a new collection of carefully selected products
+          from indie brands and luxury beauty companies.
+        </p>
+
+        <a href="#" class="btn">Join Today</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GALLERY -->
+
+  <section id="gallery">
+
+    <div class="section-title">
+
+      <h2>Inside The Boxes</h2>
+
+      <p>
+        A peek into our aesthetic beauty collections.
+      </p>
+
+    </div>
+
+    <div class="gallery">
+
+      <img
+        src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+        alt="Beauty products"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1596704017254-975cbdf3f77f?q=80&w=1200&auto=format&fit=crop"
+        alt="Makeup flatlay"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1200&auto=format&fit=crop"
+        alt="Model with makeup"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1200&auto=format&fit=crop"
+        alt="Beauty aesthetic"
+      >
+
+    </div>
+
+  </section>
+
+  <!-- REVIEWS -->
+
+  <section id="reviews">
+
+    <div class="section-title">
+
+      <h2>Customer Reviews</h2>
+
+      <p>
+        Thousands of beauty lovers are obsessed with GlowBox.
+      </p>
+
+    </div>
+
+    <div class="testimonials">
+
+      <div class="testimonial">
+
+        <p>
+          “The packaging is SO beautiful and the products feel super luxury.”
+        </p>
+
+        <h4>— Ava M.</h4>
+
+      </div>
+
+      <div class="testimonial">
+
+        <p>
+          “I discovered my favorite lip gloss and skincare products through GlowBox.”
+        </p>
+
+        <h4>— Sophia R.</h4>
+
+      </div>
+
+      <div class="testimonial">
+
+        <p>
+          “The aesthetic of this brand is unmatched. Everything looks gorgeous.”
+        </p>
+
+        <h4>— Emily K.</h4>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- NEWSLETTER -->
+
+  <section>
+
+    <div class="newsletter">
+
+      <h2>Join The Glow Club</h2>
+
+      <p>
+        Subscribe for exclusive launches, beauty tips, and special discounts.
+      </p>
+
+      <input type="email" placeholder="Enter your email">
+
+      <br>
+
+      <button>Subscribe</button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 GlowBox Beauty — Designed for beauty lovers ✨
+  </footer>
+
+</body>
+</html>
